@@ -24,6 +24,7 @@ private:
 
 public slots:
     void slgoToAvailableGames();
+    void slgoToBoard();
 };
 
 #endif // WIDGET_H

@@ -24,7 +24,6 @@ Board::~Board()
 void Board::init(){
     ecran = QApplication::desktop()->screenGeometry();
     setFixedSize(ecran.width(),ecran.height());
-
     //Construction du label du pot
     pot = new QLabel(this);
     pot->setText("POT : XXX");
