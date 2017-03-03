@@ -24,6 +24,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += main.cpp\
-        board.cpp
+        board.cpp \
+    widget.cpp
 
-HEADERS  += board.h
+HEADERS  += board.h \
+    widget.h
