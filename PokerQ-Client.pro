@@ -27,5 +27,12 @@ SOURCES += main.cpp\
         board.cpp \
     widget.cpp
 
+<<<<<<< HEAD
 HEADERS  += board.h \
     widget.h
+
+HEADERS  += board.h
+
+RESOURCES += \
+    ressources.qrc
+
