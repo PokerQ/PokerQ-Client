@@ -4,6 +4,9 @@
 #include <QWidget>
 
 class Board;
+class Connection;
+class AvailableGames;
+class QStackedWidget;
 
 class Widget : public QWidget
 {
@@ -12,9 +15,15 @@ public:
     explicit Widget(QWidget *parent = 0);
 
 private:
-    Board *board;
+    Board *m_board;
+    Connection *m_connection;
+    AvailableGames *m_availableGames;
+    QStackedWidget *m_stackedWidget;
 
     void init();
+
+public slots:
+    void slgoToAvailableGames();
 };
 
 #endif // WIDGET_H
