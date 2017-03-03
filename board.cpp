@@ -6,11 +6,14 @@
 #include <QPen>
 #include <QLabel>
 #include <QPushButton>
+#include <QImage>
+#include <QPoint>
 
 Board::Board(QWidget *parent)
     : QWidget(parent)
 {
     init();
+    handle();
 }
 
 Board::~Board()
@@ -38,13 +41,13 @@ void Board::init(){
     stackPlayer2 = new QLabel(this);
     stackPlayer2->setText("XXX");
     stackPlayer2->setStyleSheet("font: 25pt;");
-    stackPlayer2->setGeometry(width()*0.87,height()*0.38,50,50);
+    stackPlayer2->setGeometry(width()*0.485,height()*0.05,50,50);
 
     //Construction du label du Joueur 3
     stackPlayer3 = new QLabel(this);
     stackPlayer3->setText("XXX");
     stackPlayer3->setStyleSheet("font: 25pt;");
-    stackPlayer3->setGeometry(width()*0.485,height()*0.05,50,50);
+    stackPlayer3->setGeometry(width()*0.87,height()*0.38,50,50);
 
     //Construction du label du Joueur 4
     stackPlayer4 = new QLabel(this);
@@ -62,13 +65,13 @@ void Board::init(){
     mise2 = new QLabel(this);
     mise2->setText("XXX");
     mise2->setStyleSheet("font: 25pt;");
-    mise2->setGeometry(width()*0.80,height()*0.38,50,50);
+    mise2->setGeometry(width()*0.485,height()*0.1,50,50);
 
     //Construction du label mise du Joueur 3
     mise3 = new QLabel(this);
     mise3->setText("XXX");
     mise3->setStyleSheet("font: 25pt;");
-    mise3->setGeometry(width()*0.485,height()*0.1,50,50);
+    mise3->setGeometry(width()*0.80,height()*0.38,50,50);
 
     //Construction du label mise du Joueur 4
     mise4 = new QLabel(this);
@@ -91,6 +94,22 @@ void Board::init(){
     betButton->setText("Bet");
     betButton->setGeometry(width()*0.525,height()*0.87,75,75);
 
+    flop1 = new QPoint(width()*0.38,height()*0.30);
+    flop2 = new QPoint(width()*0.43,height()*0.30);
+    flop3 = new QPoint(width()*0.48,height()*0.30);
+    turn = new QPoint(width()*0.53,height()*0.30);
+    river = new QPoint(width()*0.58,height()*0.30);
+    card1Player = new QPoint(width()*0.45,height()*0.72);
+    card2Player = new QPoint(width()*0.51,height()*0.72);
+
+    stringFlop1 = new QString(":/cards/cards/dos.jpeg");
+    stringFlop2 = new QString(":/cards/cards/dos.jpeg");
+    stringFlop3 = new QString(":/cards/cards/dos.jpeg");
+    stringTurn = new QString(":/cards/cards/dos.jpeg");
+    stringRiver = new QString(":/cards/cards/dos.jpeg");
+    stringCard1 = new QString(":/cards/cards/dos.jpeg");
+    stringCard2 = new QString(":/cards/cards/dos.jpeg");
+
 }
 
 void Board::paintEvent(QPaintEvent *){
@@ -105,23 +124,23 @@ void Board::paintEvent(QPaintEvent *){
     painter.drawEllipse(width()*0.15,height()*0.1,width()*0.7,height()*0.6);
 
     //Player 1
-    painter.drawImage(QPoint(width()*0.45,height()*0.72), QImage(":/cards/cards/1.png"));
-    painter.drawImage(QPoint(width()*0.51,height()*0.72), QImage(":/cards/cards/2.png"));
+    painter.drawImage(*card1Player, QImage(*stringCard1));
+    painter.drawImage(*card2Player, QImage(*stringCard2));
 
     //5 cartes
-    painter.drawImage(QPoint(width()*0.38,height()*0.30), QImage(":/cards/cards/1.png"));
-    painter.drawImage(QPoint(width()*0.43,height()*0.30), QImage(":/cards/cards/2.png"));
-    painter.drawImage(QPoint(width()*0.48,height()*0.30), QImage(":/cards/cards/1.png"));
-    painter.drawImage(QPoint(width()*0.53,height()*0.30), QImage(":/cards/cards/2.png"));
-    painter.drawImage(QPoint(width()*0.58,height()*0.30), QImage(":/cards/cards/2.png"));
+    painter.drawImage(*flop1, QImage(*stringFlop1));
+    painter.drawImage(*flop2, QImage(*stringFlop2));
+    painter.drawImage(*flop3, QImage(*stringFlop3));
+    painter.drawImage(*turn, QImage(*stringTurn));
+    painter.drawImage(*river, QImage(*stringRiver));
 
     painter.restore();
 }
 
 void Board::handle(){
-    QObject::connect(foldButton,&QPushButton::clicked,this, &Board::slBet);
+    QObject::connect(foldButton,&QPushButton::clicked,this, &Board::slFold);
     QObject::connect(checkButton,&QPushButton::clicked,this,&Board::slCheck);
-    QObject::connect(betButton,&QPushButton::clicked,this,&Board::slFold);
+    QObject::connect(betButton,&QPushButton::clicked,this,&Board::slBet);
 }
 
 void Board::slBet(){
@@ -133,5 +152,9 @@ void Board::slCheck(){
 }
 
 void Board::slFold(){
+
+}
+
+void Board::drawCard(){
 
 }

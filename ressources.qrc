@@ -52,5 +52,6 @@
         <file>cards/3.png</file>
         <file>cards/2.png</file>
         <file>cards/1.png</file>
+        <file>cards/dos.jpeg</file>
     </qresource>
 </RCC>
